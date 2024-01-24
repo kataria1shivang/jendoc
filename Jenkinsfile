@@ -34,10 +34,10 @@ pipeline {
                 script {
                     withCredentials([sshUserPrivateKey(credentialsId: 'ec2aws', keyFileVariable: 'SSH_KEY')]) {
                     // Pull the Docker image on the EC2 instance
-                    sh "ssh -i $SSH_KEY -o StrictHostKeyChecking=no ec2-user@ec2-54-173-55-253.compute-1.amazonaws.com 'docker pull shivangkataria/my-app-1.0'"
+                    sh "ssh -i $SSH_KEY -o StrictHostKeyChecking=no ubuntu@ec2-54-173-55-253.compute-1.amazonaws.com 'docker pull shivangkataria/my-app-1.0'"
 
                     // Run the Docker container on the EC2 instance (modify command as needed)
-                    sh "ssh -i $SSH_KEY -o StrictHostKeyChecking=no ec2-user@ec2-54-173-55-253.compute-1.amazonaws.com 'docker run -d -p 80:80 shivangkataria/my-app-1.0'"
+                    sh "ssh -i $SSH_KEY -o StrictHostKeyChecking=no ubuntu@ec2-54-173-55-253.compute-1.amazonaws.com 'docker run -d -p 80:80 shivangkataria/my-app-1.0'"
             }
         }
     }
